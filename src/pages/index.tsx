@@ -6,7 +6,7 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-
+  const { data: sessionData } = useSession();
   return (
     <>
       <Head>
@@ -14,14 +14,16 @@ const Home: NextPage = () => {
         <meta name="description" content="Icon Generator" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+      <main className="flex min-h-screen flex-col items-center text-gray-200 justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <h1>Home</h1>
-        {/* generate home page jsx with tailwind css */}
-        <div className="flex flex-col items-center justify-center gap-4">
-          <p className="text-center text-2xl text-white">
-            <Link href="/generate">Generate</Link>
-          </p>
-        </div>
+        <AuthShowcase />
+        {sessionData && (
+          <div className="flex flex-col items-center justify-center gap-4 mt-4 ">
+            <p className="text-center text-2xl rounded-md p-4 text-white bg-gradient-to-r from-cyan-500 to-blue-500">
+              <Link href="/generate">Click Generate</Link>
+            </p>
+          </div>
+        )}
       </main>
     </>
   );
