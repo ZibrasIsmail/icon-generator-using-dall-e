@@ -21,6 +21,14 @@ const server = z.object({
   // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
+  REPLICATE_API_TOKEN: z.string(),
+  SECRET_ACCESS_KEY: z.string(),
+  ACCESS_KEY_ID: z.string(),
+  ENDPOINT: z.string(),
+  CLOUDINARY_CLOUD_NAME: z.string(),
+  CLOUDINARY_API_KEY: z.string(),
+  CLOUDINARY_API_SECRET: z.string(),
+  NEXT_PUBLIC_UPLOAD_PRESET: z.string(),
 });
 
 /**
@@ -44,7 +52,14 @@ const processEnv = {
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-  // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+  REPLICATE_API_TOKEN: process.env.REPLICATE_API_TOKEN,
+  SECRET_ACCESS_KEY: process.env.SECRET_ACCESS_KEY,
+  ACCESS_KEY_ID: process.env.ACCESS_KEY_ID,
+  ENDPOINT: process.env.ENDPOINT,
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+  NEXT_PUBLIC_UPLOAD_PRESET: process.env.NEXT_PUBLIC_UPLOAD_PRESET,
 };
 
 // Don't touch the part below
