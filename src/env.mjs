@@ -29,6 +29,8 @@ const server = z.object({
   CLOUDINARY_API_KEY: z.string(),
   CLOUDINARY_API_SECRET: z.string(),
   NEXT_PUBLIC_UPLOAD_PRESET: z.string(),
+  STRIPE_SECRET_KEY: z.string(),
+  WEBHOOK_SECRET: z.string(),
 });
 
 /**
@@ -37,6 +39,8 @@ const server = z.object({
  */
 const client = z.object({
   // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
+  NEXT_PUBLIC_STRIPE_KEY: z.string(),
+  // NEXT_SECRET_KEY: z.string(),
 });
 
 /**
@@ -60,6 +64,9 @@ const processEnv = {
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
   NEXT_PUBLIC_UPLOAD_PRESET: process.env.NEXT_PUBLIC_UPLOAD_PRESET,
+  NEXT_PUBLIC_STRIPE_KEY: process.env.NEXT_PUBLIC_STRIPE_KEY,
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
 };
 
 // Don't touch the part below

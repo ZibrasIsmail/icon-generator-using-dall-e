@@ -1,10 +1,10 @@
 // create tRPC router for generate image
 
 import { TRPCError } from "@trpc/server";
+import { v2 as cloudinary } from "cloudinary";
 import Replicate from "replicate";
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
-import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -17,13 +17,13 @@ const replicate = new Replicate({
 });
 
 async function generateIcon(prompt: string) {
+  // check the credits
   if (process.env.NODE_ENV !== "production") {
     return "https://replicate.delivery/pbxt/LI5VAhU2v3jNTjuE76GMTzikT1XMiUoRSznZdXR0cAnK1XJS/ComfyUI_00362_.png";
   }
   const image = (await replicate.run("stability-ai/stable-diffusion-3", {
     input: {
       prompt: prompt,
-      aspect_ratio: "3:2",
       output_format: "png",
     },
   })) as string[];
@@ -32,6 +32,15 @@ async function generateIcon(prompt: string) {
 }
 
 export const generateRouter = createTRPCRouter({
+  getUserCredits: protectedProcedure.query(async ({ ctx }) => {
+    const user = await ctx.prisma.user.findUnique({
+      where: {
+        id: ctx.session?.user.id,
+      },
+    });
+    return user?.credits;
+  }),
+
   generateIcon: protectedProcedure
     .input(
       z.object({
@@ -58,6 +67,7 @@ export const generateRouter = createTRPCRouter({
           message: "You don't have enough credits",
         });
       }
+
       const image = await generateIcon(input.prompt);
 
       if (!image) {

@@ -22,13 +22,7 @@ const config = {
   },
   // https://replicate.delivery/yhqm/2zjRHQ0qMhYtL5Cnmz3NNb18zCjFOCCIqZ2x3ilBd1MKrayE/R8_SD3_00001_.webp
   images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "replicate.delivery" },
-      {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-      },
-    ],
+    domains: ["replicate.delivery", "res.cloudinary.com"],
   },
 };
 export default config;
