@@ -11,6 +11,7 @@ export default function Header() {
         enabled: sessionData?.user !== undefined,
     });
     const router = useRouter();
+
     return (
         <header className="flex h-16 w-full shrink-0 items-center px-4 md:px-6 bg-background border-b">
             <Link href="/" className="mr-6 flex items-center" prefetch={false}>
@@ -41,7 +42,7 @@ export default function Header() {
                 >
                     <span className="flex items-center">
                         Buy Credits
-                        {router.pathname === '/generate' && (
+                        {credits && (
                             <span className="text-xs text-muted-foreground font-bold tracking-tighter ml-1">({credits})</span>
                         )}
                     </span>
