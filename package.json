@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.614.0",
+    "@clerk/nextjs": "^5.2.4",
     "@edgestore/react": "^0.2.0",
     "@edgestore/server": "^0.2.0",
     "@next-auth/prisma-adapter": "^1.0.5",

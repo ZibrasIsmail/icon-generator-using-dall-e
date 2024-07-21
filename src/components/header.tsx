@@ -17,14 +17,14 @@ export default function Header() {
                 <MountainIcon className="h-6 w-6 text-primary" />
                 <span className="sr-only">Icon Generator</span>
             </Link>
-            <nav className="ml-auto flex items-center gap-4 md:gap-6">
-                <Link
+            <nav className="ml-auto flex items-center gap-2 md:gap-6">
+                {/* <Link
                     href="/gallery"
                     className="inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                     prefetch={false}
                 >
                     Gallery
-                </Link>
+                </Link> */}
                 <Link
                     href="/generate"
                     className="inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
