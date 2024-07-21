@@ -2,7 +2,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link"
 import useBuyCredits from "~/hooks/useBuyCredits";
 import { api } from "~/utils/api";
-import { useRouter } from 'next/router';
 
 export default function Header() {
     const { data: sessionData } = useSession();
@@ -10,11 +9,10 @@ export default function Header() {
     const { data: credits } = api.generate.getUserCredits.useQuery(undefined, {
         enabled: sessionData?.user !== undefined,
     });
-    const router = useRouter();
 
     return (
         <header className="flex h-16 w-full shrink-0 items-center px-4 md:px-6 bg-background border-b">
-            <Link href="/" className="mr-6 flex items-center" prefetch={false}>
+            <Link href="/" className="mr-6 flex items-center">
                 <MountainIcon className="h-6 w-6 text-primary" />
                 <span className="sr-only">Icon Generator</span>
             </Link>
@@ -29,7 +27,6 @@ export default function Header() {
                 <Link
                     href="/generate"
                     className="inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                    prefetch={false}
                 >
                     Generate
                 </Link>
@@ -40,12 +37,7 @@ export default function Header() {
                         void buyCredits();
                     }}
                 >
-                    <span className="flex items-center">
-                        Buy Credits
-                        {credits && (
-                            <span className="text-xs text-muted-foreground font-bold tracking-tighter ml-1">({credits})</span>
-                        )}
-                    </span>
+                    Buy Credits {credits && credits > 0 ? <span className="text-xs text-muted-foreground font-bold tracking-tighter ml-1">({credits})</span> : null}
                 </button>
                 }
                 <button
